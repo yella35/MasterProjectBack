@@ -5,7 +5,7 @@ const Globals = require('./config/globals')
 
 function initMongo (user, password, host) {
     return new Promise((resolve, reject) => {
-       mongoose.connect(`mongodb://${host || 'localhost'}/api-logicimmo`, { useNewUrlParser: true })
+       mongoose.connect(`mongodb://${host || 'localhost'}/hotellerie`, { useNewUrlParser: true })
         const db = mongoose.connection
         db.on('error', reject)
         db.once('open', resolve)

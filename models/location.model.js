@@ -1,14 +1,19 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Chambre = new Schema({
-    nom: String,
-    lieu: String,
-    prix: {type: Schema.Types.ObjectId, ref: 'Calendrier'},
-    image: String,
+const Location = new Schema({
+    nom : String,
+    locationType:  [{type: Schema.Types.ObjectId, ref: 'LocationType'}],
+    thumbnail : String,
+    adresse:{
+        ville : String,
+        codePostal : String,
+        rue : String
+    },
+    disponibilites: {type: Schema.Types.ObjectId, ref: 'Disponibilite'},
     commentaire: [{type: Schema.Types.ObjectId, ref: 'Commentaire'}],
-    reservation: {type: Schema.Types.ObjectId, ref: 'Reservation'},
-    option: [{type: Schema.Types.ObjectId, ref: 'Option'}],
-    disponibilite: [{type: Schema.Types.ObjectId, ref: 'Disponibilite'}],
+    reservations: {type: Schema.Types.ObjectId, ref: 'Reservation'},
+    options: [{type: Schema.Types.ObjectId, ref: 'Option'}],
 })
-module.exports.Project = mongoose.model('Chambre', Chambre)
+
+module.exports.Location = mongoose.model('Location', Location)

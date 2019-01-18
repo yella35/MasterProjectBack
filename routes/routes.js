@@ -1,5 +1,6 @@
 const restify = require('restify')
 const logger = require('morgan')
+const location =  require('./objects/locations')
 
 const httpServer = restify.createServer()
 initServer(httpServer)
@@ -21,6 +22,16 @@ function initServer (server) {
         res.send(200)
         return next()
     })
+
+    server.get(
+        {path: '/locations/:idType', version: '1.0.0'},
+        location.GETALL
+    )
+
+    server.get(
+        {path: '/locations/:id/thumb', version: '1.0.0'},
+        location.GETTHUMB
+    )
 
 
 
