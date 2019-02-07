@@ -1,5 +1,6 @@
 const Location = require('../../models/location.model').Location
 const LocationType = require('../../models/locationtype.model').LocationType
+const Disponibilite = require('../../models/disponibilite.model').Disponibilite
 const fs = require('fs')
 
 module.exports.GETALL = async function (req, res) {
@@ -18,7 +19,7 @@ module.exports.GETALL = async function (req, res) {
     }
     try {
         let locations = await Location
-            .find(query, {}, options).populate('locationType')
+            .find(query, {}, options).populate('locationType').populate('disponibilites')
         if (!locations) {
             res.status(400)
             return res.send("Can't find locations")

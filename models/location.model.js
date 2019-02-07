@@ -11,7 +11,7 @@ const Location = new Schema({
         rue : String
     },
     disponibilites: {type: Schema.Types.ObjectId, ref: 'Disponibilite'},
-    commentaire: [{type: Schema.Types.ObjectId, ref: 'Commentaire'}],
+    commentaires: [{type: Schema.Types.ObjectId, ref: 'Commentaire'}],
     reservations: {type: Schema.Types.ObjectId, ref: 'Reservation'},
     options: [{type: Schema.Types.ObjectId, ref: 'Option'}],
 })
