@@ -1,6 +1,8 @@
 const restify = require('restify')
 const logger = require('morgan')
 const location =  require('./objects/locations')
+const locationtypes =  require('./objects/locationtypes')
+const image =  require('./objects/images')
 
 const httpServer = restify.createServer()
 initServer(httpServer)
@@ -29,10 +31,24 @@ function initServer (server) {
     )
 
     server.get(
+        {path: '/locations/detail/:id', version: '1.0.0'},
+        location.GET
+    )
+
+    server.get(
         {path: '/locations/:id/thumb', version: '1.0.0'},
         location.GETTHUMB
     )
 
+    server.get(
+        {path: '/images/:id', version: '1.0.0'},
+        image.GET
+    )
+
+    server.get(
+        {path: '/locationtypes', version: '1.0.0'},
+        locationtypes.GETALL
+    )
 
 
 }

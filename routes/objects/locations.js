@@ -25,8 +25,25 @@ module.exports.GETALL = async function (req, res) {
             return res.send("Can't find locations")
         }
         res.status(200)
-        console.log(locations)
         return res.send({locations: locations})
+    } catch (err) {
+        console.error(err)
+        res.status(500)
+        return res.send()
+    }
+}
+
+module.exports.GET = async function (req, res) {
+    let id = req.params.id
+    try {
+        let location = await Location
+            .findById(id).populate('locationType').populate('disponibilites')
+        if (!location) {
+            res.status(400)
+            return res.send("Can't find location")
+        }
+        res.status(200)
+        return res.send({location: location})
     } catch (err) {
         console.error(err)
         res.status(500)
