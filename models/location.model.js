@@ -14,7 +14,8 @@ const Location = new Schema({
     disponibilites: {type: Schema.Types.ObjectId, ref: 'Disponibilite'},
     commentaires: [{type: Schema.Types.ObjectId, ref: 'Commentaire'}],
     reservations: {type: Schema.Types.ObjectId, ref: 'Reservation'},
-    options: [{type: Schema.Types.ObjectId, ref: 'Option'}],
+    options: [{option : {type: Schema.Types.ObjectId, ref: 'Option'} , price : Number}],
+    equipements : [{type: Schema.Types.ObjectId, ref: 'Equipement'}],
     images:[{
         small:{type: Schema.Types.ObjectId, ref: 'Image'},
         medium:{type: Schema.Types.ObjectId, ref: 'Image'},
